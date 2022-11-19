@@ -1,11 +1,14 @@
 package com.localhost.studybuddy.user;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.localhost.studybuddy.geocoding.ReverseGeocodingResponse;
 import com.localhost.studybuddy.role.Role;
 import com.localhost.studybuddy.role.RoleService;
 import com.localhost.studybuddy.util.GeoLocation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.data.geo.GeoResult;
+import org.springframework.data.geo.Point;
 import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.connection.RedisGeoCommands;
@@ -13,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -39,6 +43,8 @@ public class UserServiceImpl implements UserService{
 
     public static final String UPLOAD_DIR = "user_uploads/";
     public static final String UPLOAD_DIR_PATH = "src/main/resources/static/user_uploads/";
+    public String GEOCODING_URL = "http://api.positionstack.com/v1/reverse?access_key=7b72fe2dd3ccd9963408ba1493167bec&query=";
+    private static final String LIMIT = "&limit=1";
 
 
 
@@ -61,11 +67,7 @@ public class UserServiceImpl implements UserService{
 
 
     public Page<UserModel> findAllBasedOnCriteria(UserModel userModel, Pageable pageable){
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withNullHandler(ExampleMatcher.NullHandler.IGNORE)
-                .withStringMatcher(ExampleMatcher.StringMatcher.EXACT)
-                .withIgnoreCase()
-                .withIgnoreNullValues();
+        ExampleMatcher matcher = configureMatcher();
 
         Example<UserModel> probe = Example.of(userModel, matcher);
 
@@ -90,11 +92,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public Page<UserModel> findAllByConditions(UserModel userModel, Pageable pageable, int ageGroup){
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withNullHandler(ExampleMatcher.NullHandler.IGNORE)
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
-                .withIgnoreCase()
-                .withIgnoreNullValues();
+        ExampleMatcher matcher = configureMatcher();
 
         Example<UserModel> example = Example.of(userModel,matcher);
 
@@ -107,19 +105,44 @@ public class UserServiceImpl implements UserService{
 
     }
 
-    public List<UserModel> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation,int distance){
+
+    public String doReverseGeocoding(GeoLocation geoLocation){
+        RestTemplate restTemplate = new RestTemplate();
+        String latitude  = geoLocation.getLatitude();
+        String longitude = geoLocation.getLongitude();
+        ObjectMapper mapper = new ObjectMapper();
+
+        String result = restTemplate.getForObject(GEOCODING_URL + latitude + "," + longitude + LIMIT,String.class);
+        try{
+            ReverseGeocodingResponse  results = mapper.readValue(result, ReverseGeocodingResponse.class);
+            return results.getData()[0].getLabel();
+        }catch (Exception e){
+            throw new RuntimeException("Error while doing reverse geocoding");
+        }
+
+    }
+
+
+
+
+    public List<UserFilteredResponse> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation,int distance){
         Page<UserModel> allByConditions = findAllByConditions(userModel, pageable, ageGroup);
         List<GeoResult<RedisGeoCommands.GeoLocation<String>>> geoResults = userGeoLocationService.searchForUsers(geoLocation,distance);
 
         List<Integer> ids = new ArrayList<>();
-        List<UserModel> users = new ArrayList<>();
+        List<UserFilteredResponse> users = new ArrayList<>();
 
         geoResults.forEach(x-> ids.add(Integer.valueOf(x.getContent().getName())));
         Collections.sort(ids);
 
         for(UserModel user : allByConditions){
-            if (Collections.binarySearch(ids, user.getId()) != -1){
-                users.add(user);
+            int i = Collections.binarySearch(ids, user.getId());
+            if ( i > -1){
+                UserFilteredResponse userFilteredResponse = parseUserModel(user);
+                Point point = geoResults.get(i).getContent().getPoint();
+
+                userFilteredResponse.setCurrentStudyBuddyAddress(doReverseGeocoding(new GeoLocation(point)));
+                users.add(userFilteredResponse);
             };
         }
         return users;
@@ -172,6 +195,26 @@ public class UserServiceImpl implements UserService{
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.findRoleByName(DEFAULT_ROLE));
         user.setRoles(roles);
+    }
+
+    private UserFilteredResponse parseUserModel(UserModel userModel){
+        return UserFilteredResponse.builder()
+                .email(userModel.getEmail())
+                .imagePath(userModel.getImagePath())
+                .imagePath(userModel.getImagePath())
+                .name(userModel.getName())
+                .gender(userModel.getGender())
+                .id(userModel.getId())
+                .lastName(userModel.getLastname())
+                .university(userModel.getUniversity()).build();
+    }
+
+    private ExampleMatcher configureMatcher(){
+        return ExampleMatcher.matching()
+                .withNullHandler(ExampleMatcher.NullHandler.IGNORE)
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withIgnoreCase()
+                .withIgnoreNullValues();
     }
 
 

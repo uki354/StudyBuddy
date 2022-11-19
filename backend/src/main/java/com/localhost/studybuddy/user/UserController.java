@@ -26,8 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/search")
-    public List<UserModel> searchUsersByFilters(@RequestParam(defaultValue = "0",required = false) String ageGroup,
-                                                @RequestParam(required = false) boolean gender,
+    public List<UserFilteredResponse> searchUsersByFilters(@RequestParam(defaultValue = "0",required = false) String ageGroup,
+                                                @RequestParam(required = false) Boolean gender,
                                                 @RequestParam(required = false) String university,
                                                 @RequestParam(defaultValue = "2",required = false) int distance,
                                                 @RequestParam(required = false) String lat,

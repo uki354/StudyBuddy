@@ -11,7 +11,7 @@ public interface UserService {
 
     void createUser(UserDto userDto);
     Page<UserModel> findAllByConditions(UserModel userModel, Pageable pageable, int ageGroup);
-    List<UserModel> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation, int distance);
+    List<UserFilteredResponse> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation, int distance);
     void updateUserImage(MultipartFile image);
 
 

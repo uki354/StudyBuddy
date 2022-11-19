@@ -39,7 +39,7 @@ public class UserModel extends BaseModel {
     @Column(columnDefinition = "DATE")
     private Date birthdate;
     @Column(columnDefinition = "TINYINT(1)")
-    private boolean gender;
+    private Boolean gender;
     private String university;
 
 
