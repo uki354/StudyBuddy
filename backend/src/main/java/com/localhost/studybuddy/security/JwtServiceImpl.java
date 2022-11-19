@@ -10,12 +10,15 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.EncodedKeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -32,12 +35,17 @@ public class JwtServiceImpl implements JwtService {
 
     @PostConstruct
     public void initializeKeys() throws Exception {
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-        generator.initialize(2048);
-        KeyPair keyPair = generator.generateKeyPair();
+        File publicKeyFile = new File("public.key");
+        File privateKeyFile = new File("private.key");
 
-        privateKey = keyPair.getPrivate();
-        publicKey = keyPair.getPublic();
+        byte[] publicKeyBytes = Files.readAllBytes(publicKeyFile.toPath());
+        byte[] privateKeyBytes = Files.readAllBytes(privateKeyFile.toPath());
+
+        KeyFactory rsa = KeyFactory.getInstance("RSA");
+        EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(publicKeyBytes);
+        EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
+        privateKey = rsa.generatePrivate(privateKeySpec);
+        publicKey = rsa.generatePublic(publicKeySpec);
     }
 
     @Override
