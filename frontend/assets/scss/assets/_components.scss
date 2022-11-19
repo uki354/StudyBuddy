@@ -88,3 +88,105 @@
     }
   }
 }
+
+
+.filters {
+  .filters-head {
+    background-color: lightgray;
+    border-radius: 12px;
+    padding: 5px 20px;
+
+    strong {
+      color: $primary-txt-color;
+    }
+  }
+
+
+  .filter-item {
+    display: inline-block;
+
+    .select {
+      border: transparent !important;
+      border-radius: 20px !important;
+      padding: 4px 8px !important;
+    }
+
+  }
+
+  .search {
+    .search-btn {
+      background-color: $secondary-color;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 20px;
+      border: none;
+
+      i {
+        transition: 0.25s linear;
+      }
+
+    }
+  }
+
+}
+
+.users-listing-section {
+  .users-list {
+    .user {
+      padding: 12px 8px 12px 12px;
+      border-radius: 16px;
+      box-shadow: 4px 4px 20px 0px rgba(196, 196, 196, 1);;
+
+      .user-img {
+        padding: 0 6px;
+
+        img {
+          max-width: 200px;
+          max-height: 200px;
+          width: 100%;
+          border-radius: 16px;
+        }
+
+        .request-btn {
+          display: block;
+          text-align: center;
+          color: $primary-txt-color;
+          border: 1px solid $primary-txt-color;
+          border-radius: 12px;
+          margin: 6px 0 0 0;
+
+          &:hover {
+            color: #fff;
+            border: 1px solid transparent;
+            background-color: $secondary-color;
+          }
+        }
+
+        .request-btn.send {
+          background-color: $gray-color;
+          color: #fff;
+        }
+
+      }
+
+      .user-short-data {
+        @include breakpoint(breakMax480) {
+          padding-left: 15px;
+        }
+
+
+        .user-text {
+          b {
+            @include breakpoint(breakMax767) {
+              font-size: 12px;
+            }
+          }
+        }
+
+        strong {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}

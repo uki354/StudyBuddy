@@ -166,6 +166,10 @@ body {
   }
 }
 
+img {
+  width: 100%;
+}
+
 p {
   margin-bottom: 0;
 }
@@ -180,6 +184,15 @@ a {
 @media (max-width: 991px) {
   .mb-mid {
     margin-bottom: 85px;
+  }
+}
+
+.mt-mid {
+  margin-top: 100px;
+}
+@media (max-width: 991px) {
+  .mt-mid {
+    margin-bottom: 55px;
   }
 }
 
@@ -275,6 +288,32 @@ a {
 header {
   padding-top: 20px;
 }
+header .navbar .navbar-toggler {
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+header .navbar .navbar-toggler .burger-menu-stick {
+  display: block;
+  height: 2px;
+  width: 24px;
+  content: "";
+  background-color: #000;
+  margin-top: 5px;
+  transition: 0.2s linear;
+}
+header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(2) {
+  transform: translateX(-60px);
+}
+header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(1) {
+  transform: rotate(45deg) translate(2px, 1px);
+  transform-origin: 0 0;
+}
+header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(3) {
+  transform: rotate(-45deg) translate(-4px, 3px);
+  transform-origin: 0 0;
+}
 
 header.landing-header .navbar .navbar-toggler {
   overflow: hidden;
@@ -290,17 +329,6 @@ header.landing-header .navbar .navbar-toggler .burger-menu-stick {
   background-color: #fff;
   margin-top: 5px;
   transition: 0.2s linear;
-}
-header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(2) {
-  transform: translateX(-60px);
-}
-header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(1) {
-  transform: rotate(45deg) translate(2px, 1px);
-  transform-origin: 0 0;
-}
-header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(3) {
-  transform: rotate(-45deg) translate(-4px, 3px);
-  transform-origin: 0 0;
 }
 @media (min-width: 992px) {
   header.landing-header .navbar .navbar-nav .nav-item {
@@ -429,13 +457,85 @@ header ul li a.underline-hover:hover::after {
   box-shadow: 4px 4px 12px 1px rgb(201, 201, 201);
 }
 
-body.form {
+.filters .filters-head {
+  background-color: lightgray;
+  border-radius: 12px;
+  padding: 5px 20px;
+}
+.filters .filters-head strong {
+  color: #00330B;
+}
+.filters .filter-item {
+  display: inline-block;
+}
+.filters .filter-item .select {
+  border: transparent !important;
+  border-radius: 20px !important;
+  padding: 4px 8px !important;
+}
+.filters .search .search-btn {
+  background-color: #21cc95;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+}
+.filters .search .search-btn i {
+  transition: 0.25s linear;
+}
+
+.users-listing-section .users-list .user {
+  padding: 12px 8px 12px 12px;
+  border-radius: 16px;
+  box-shadow: 4px 4px 20px 0px rgb(196, 196, 196);
+}
+.users-listing-section .users-list .user .user-img {
+  padding: 0 6px;
+}
+.users-listing-section .users-list .user .user-img img {
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
+  border-radius: 16px;
+}
+.users-listing-section .users-list .user .user-img .request-btn {
+  display: block;
+  text-align: center;
+  color: #00330B;
+  border: 1px solid #00330B;
+  border-radius: 12px;
+  margin: 6px 0 0 0;
+}
+.users-listing-section .users-list .user .user-img .request-btn:hover {
+  color: #fff;
+  border: 1px solid transparent;
+  background-color: #21cc95;
+}
+.users-listing-section .users-list .user .user-img .request-btn.send {
+  background-color: #677572;
+  color: #fff;
+}
+@media (max-width: 480px) {
+  .users-listing-section .users-list .user .user-short-data {
+    padding-left: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .users-listing-section .users-list .user .user-short-data .user-text b {
+    font-size: 12px;
+  }
+}
+.users-listing-section .users-list .user .user-short-data strong {
+  font-size: 22px;
+}
+
+body.forms {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background: linear-gradient(#141e30, #243b55);
 }
-body.form .login-box {
+body.forms .login-box {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -447,16 +547,16 @@ body.form .login-box {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
 }
-body.form .login-box h2 {
+body.forms .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
   color: #fff;
   text-align: center;
 }
-body.form .login-box .user-box {
+body.forms .login-box .user-box {
   position: relative;
 }
-body.form .login-box .user-box input {
+body.forms .login-box .user-box input {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -467,7 +567,7 @@ body.form .login-box .user-box input {
   outline: none;
   background: transparent;
 }
-body.form .login-box .user-box label {
+body.forms .login-box .user-box label {
   position: absolute;
   top: 0;
   left: 0;
@@ -477,14 +577,14 @@ body.form .login-box .user-box label {
   pointer-events: none;
   transition: 0.5s;
 }
-body.form .login-box .user-box input:focus ~ label,
-body.form .login-box .user-box input:valid ~ label {
+body.forms .login-box .user-box input:focus ~ label,
+body.forms .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
   color: #058058;
   font-size: 12px;
 }
-body.form .login-box form a {
+body.forms .login-box form a {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -497,17 +597,17 @@ body.form .login-box form a {
   margin-top: 40px;
   letter-spacing: 4px;
 }
-body.form .login-box a:hover {
+body.forms .login-box a:hover {
   background: #058058;
   color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 5px #058058, 0 0 10px #058058, 0 0 5px #058058, 0 0 10px #058058;
 }
-body.form .login-box a span {
+body.forms .login-box a span {
   position: absolute;
   display: block;
 }
-body.form .login-box a span:nth-child(1) {
+body.forms .login-box a span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -523,7 +623,7 @@ body.form .login-box a span:nth-child(1) {
     left: 100%;
   }
 }
-body.form .login-box a span:nth-child(2) {
+body.forms .login-box a span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
@@ -540,7 +640,7 @@ body.form .login-box a span:nth-child(2) {
     top: 100%;
   }
 }
-body.form .login-box a span:nth-child(3) {
+body.forms .login-box a span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -557,7 +657,7 @@ body.form .login-box a span:nth-child(3) {
     right: 100%;
   }
 }
-body.form .login-box a span:nth-child(4) {
+body.forms .login-box a span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
