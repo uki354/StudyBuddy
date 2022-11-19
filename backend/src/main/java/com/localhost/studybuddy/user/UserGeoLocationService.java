@@ -18,7 +18,7 @@ public class UserGeoLocationService {
     public static final String STUDYBUDDY_REDIS_KEY_INDEX = "studdybuddy";
     public static final String COFFESHOP_REDIS_KEY_INDEX="coffeshop";
 
-    public void addStudyBuddy(GeoLocation geoLocation, int id){
+    public void addStudyBuddy(GeoLocation geoLocation, Integer id){
         GeoResult<RedisGeoCommands.GeoLocation<String>> geoLocationGeoResult = validateGeoLocation(geoLocation);
         Point point = geoLocationGeoResult.getContent().getPoint();
 

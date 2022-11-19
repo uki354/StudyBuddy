@@ -170,6 +170,11 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    public UserModel getAuthenticatedUser() {
+        return userRepository.findUserModelByEmail(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(()-> new RuntimeException("Error retrieving user from security context"));
+    }
 
     @Override
     @Transactional

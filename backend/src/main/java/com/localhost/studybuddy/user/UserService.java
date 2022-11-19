@@ -13,6 +13,7 @@ public interface UserService {
     Page<UserModel> findAllByConditions(UserModel userModel, Pageable pageable, int ageGroup);
     List<UserFilteredResponse> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation, int distance);
     void updateUserImage(MultipartFile image);
+    UserModel getAuthenticatedUser();
 
 
 }
