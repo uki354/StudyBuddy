@@ -9,15 +9,22 @@ import org.springframework.data.geo.GeoResult;
 import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.connection.RedisGeoCommands;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.imageio.ImageIO;
 import javax.persistence.criteria.Predicate;
+import javax.transaction.Transactional;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static com.localhost.studybuddy.role.RoleServiceImpl.DEFAULT_ROLE;
 
@@ -29,6 +36,9 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final RoleService roleService;
     private final UserGeoLocationService userGeoLocationService;
+
+    public static final String UPLOAD_DIR = "user_uploads/";
+    public static final String UPLOAD_DIR_PATH = "src/main/resources/static/user_uploads/";
 
 
 
@@ -42,6 +52,7 @@ public class UserServiceImpl implements UserService{
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .name(userDto.getName())
                 .lastname(userDto.getLastname())
+                .imagePath(UPLOAD_DIR + "default_img.png")
                 .build();
 
         addDefaultRole(user);
@@ -137,12 +148,33 @@ public class UserServiceImpl implements UserService{
     }
 
 
+    @Override
+    @Transactional
+    public void updateUserImage(MultipartFile image) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        userRepository.updateUserImage(auth.getName(),UPLOAD_DIR + auth.getName() + ".png");
+        uploadUserImage(auth.getName(),image);
+    }
+
+    private void uploadUserImage(String user, MultipartFile image){
+        try {
+            File file = new File(UPLOAD_DIR_PATH + user + ".png");
+            BufferedImage img = ImageIO.read(image.getInputStream());
+            ImageIO.write(img, "png", file);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
 
     private void addDefaultRole(UserModel user){
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.findRoleByName(DEFAULT_ROLE));
         user.setRoles(roles);
     }
+
+
 
     private boolean checkIfUserAlreadyExist(String email){
         return userRepository.existsByEmail(email);

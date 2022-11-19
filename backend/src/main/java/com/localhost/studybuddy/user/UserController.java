@@ -3,10 +3,11 @@ package com.localhost.studybuddy.user;
 
 import com.localhost.studybuddy.util.GeoLocation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -47,6 +48,12 @@ public class UserController {
     @GetMapping("/search/redis")
     public void searc(){
         userGeoLocationService.searchForUsers(new GeoLocation("43.89243009781097", "20.343840114901017"), 2);
+    }
+
+    @PostMapping("/updateImage")
+    public ResponseEntity<?> updateUserImage(@RequestParam("image") MultipartFile image){
+        userService.updateUserImage(image);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
