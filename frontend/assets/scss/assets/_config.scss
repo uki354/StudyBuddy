@@ -1,0 +1,429 @@
+
+/*BREAKPOINTS*/
+@mixin breakpoint($point) {
+  @if $point == breakMin1440 {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  }  @else if $point == breakMax1367 {
+    @media (max-width: 1367px) {
+      @content;
+    }
+  } @else if $point == breakMax1281 {
+    @media (max-width: 1281px) {
+      @content;
+    }
+  } @else if $point == breakMax1201 {
+    @media (max-width: 1201px) {
+      @content;
+    }
+  } @else if $point == breakMax1153 {
+    @media (max-width: 1153px) {
+      @content;
+    }
+  } @else if $point == breakMax1025 {
+    @media (max-width: 1025px) {
+      @content;
+    }
+  } @else if $point == breakMin992 {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $point == breakMax991 {
+    @media (max-width: 991px) {
+      @content;
+    }
+  } @else if $point == breakMax767 {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $point == breakMax576 {
+    @media (max-width: 576px) {
+      @content;
+    }
+  } @else if $point == breakMax480 {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $point == breakMax415 {
+    @media (max-width: 415px) {
+      @content;
+    }
+  } @else if $point == breakMax376 {
+    @media (max-width: 376px) {
+      @content;
+    }
+  } @else if $point == breakMax321 {
+    @media (max-width: 321px) {
+      @content;
+    }
+  } @else if $point == breakMax281 {
+    @media (max-width: 281px) {
+      @content;
+    }
+  }
+}
+
+/*MIXINS*/
+@mixin rwdGrid($tabs-per-row, $margin) {
+  float: left;
+  width: ((100% - (($tabs-per-row - 1) * $margin)) / $tabs-per-row);
+  margin-right: $margin;
+  &:nth-child(n) {
+    margin-right: $margin;
+  }
+  &:nth-child(#{$tabs-per-row}n) {
+    margin-right: 0;
+  }
+}
+
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+  }
+
+  $conversion-map: (
+          to top: bottom,
+          to top right: bottom left,
+          to right top: left bottom,
+          to right: left,
+          to bottom right: top left,
+          to right bottom: left top,
+          to bottom: top,
+          to bottom left: top right,
+          to left bottom: right top,
+          to left: right,
+          to left top: right bottom,
+          to top left: bottom right
+  );
+
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+
+  @return 90deg - $value;
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: $direction, $color-stops;
+    $direction: 180deg;
+  }
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}
+
+@mixin rotateElement($deg) {
+  // @include rotateElement(90deg);
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  -o-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+@mixin discardRotate() {
+  -webkit-transform: rotate(0);
+  -moz-transform: rotate(0);
+  -o-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+}
+
+@mixin flipHorizontal() {
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  transform: scaleX(-1);
+  -ms-filter: fliph;
+  filter: fliph;
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie);
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity-ie);
+  -moz-opacity: $opacity;
+  -khtml-opacity: $opacity;
+  opacity: $opacity;
+}
+
+@mixin transition-duration($element, $duration) {
+  // @include trasnsition-duration(all, .3s)
+  -webkit-transition: $element $duration ease-in-out;
+  -moz-transition: $element $duration ease-in-out;
+  -ms-transition: $element $duration ease-in-out;
+  -o-transition: $element $duration ease-in-out;
+  transition: $element $duration ease-in-out;
+}
+
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin horizontal-align($position: relative) {
+  position: $position;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+@mixin placeholderStyle {
+  /*  usage example:
+ .jobs-applications .jobs-blue-top input {
+      @include placeholderStyle {
+          ..style definition goes here..
+      }
+  }*/
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin blur($value) {
+  //@include blur(5px)
+  -webkit-filter: blur($value);
+  -moz-filter: blur($value);
+  -o-filter: blur($value);
+  -ms-filter: blur($value);
+  filter: blur($value);
+}
+
+@mixin angle($pseudo, $flip: false, $angle: 1.5deg) {
+  //@
+  //background: #41ade5;
+  //position: relative;
+  //z-index: 1;
+  //float: left;
+  //width: 100%;
+  //margin-bottom: 30px;
+
+  //@include angle(after);
+  //or
+  //@include angle(after, true);
+  //or
+  //@include angle(before);
+  //or
+  //@include angle(before, true);
+  //or
+  //@include angle(both);
+  //or
+  //@include angle(both, true);
+  //or
+  //@include angle(both, true, 5deg);
+  //or...etc
+  //@
+
+  @if $pseudo == "before" or $pseudo == "after" or $pseudo == "both" {
+    position: relative;
+    z-index: 1;
+    $selector: if($pseudo == "both", "&:before,&:after", "&:#{$pseudo}");
+
+    #{$selector} {
+      background: inherit;
+      content: "";
+      display: block;
+      height: 50%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      z-index: -1;
+      // -webkit-backface-visibility: hidden;  // for Chrome Windows
+    }
+
+    @if $pseudo == "before" {
+      #{$selector} {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+    }
+
+    @if $pseudo == "after" {
+      #{$selector} {
+        bottom: 0;
+
+        @if $flip {
+          transform: skewY($angle);
+          transform-origin: 0 100%;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+
+    @if $pseudo == "both" {
+      &:before {
+        top: 0;
+
+        @if $flip {
+          transform: skewY($angle * -1);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle);
+          transform-origin: 100% 0;
+        }
+      }
+
+      &:after {
+        bottom: 0;
+
+        @if $flip {
+          transform: skewY($angle);
+          transform-origin: 0 0;
+        } @else {
+          transform: skewY($angle * -1);
+          transform-origin: 100%;
+        }
+      }
+    }
+  }
+}
+
+//ANIMATION STYLES
+/*fadeInFromNone*/
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+/*end fadeInFromNone*/
+
+/*fadeInFromRight*/
+@keyframes fadeInRight {
+  0% {
+    left: 20%;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+/*end fadeInFromRight*/
+
+/*fadeInFromLeft*/
+@keyframes fadeInLeft {
+  0% {
+    right: 20%;
+    opacity: 0;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+/*end fadeInFromLeft*/
+
+/*fadeInFromTop*/
+@keyframes fadeInTop {
+  0% {
+    top: -50%;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/*end fadeInFromTop*/
+@-webkit-keyframes slide {
+  100% {
+    left: 200px;
+  }
+}
+
+@keyframes slide {
+  100% {
+    left: 200px;
+  }
+}

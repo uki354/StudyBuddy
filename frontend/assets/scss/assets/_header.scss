@@ -1,0 +1,127 @@
+header {
+  //position: fixed;
+  //width: 100%;
+  padding-top: 20px;
+
+  .navbar {
+    .navbar-toggler {
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+      outline: none;
+
+      .burger-menu-stick {
+        display: block;
+        height: 2px;
+        width: 24px;
+        content: "";
+        background-color: #000;
+        margin-top: 5px;
+        transition: 0.2s linear;
+      }
+
+    }
+
+    .navbar-toggler[aria-expanded='true'] .burger-menu-stick:nth-of-type(2) {
+      transform: translateX(-60px);
+    }
+
+    .navbar-toggler[aria-expanded='true'] .burger-menu-stick:nth-of-type(1) {
+      transform: rotate(45deg) translate(2px, 1px);
+      transform-origin: 0 0;
+    }
+
+    .navbar-toggler[aria-expanded='true'] .burger-menu-stick:nth-of-type(3) {
+      transform: rotate(-45deg) translate(-4px, 3px);
+      transform-origin: 0 0;
+    }
+
+  }
+
+}
+
+header.landing-header {
+  .navbar {
+    .navbar-toggler {
+      overflow: hidden;
+      box-shadow: none;
+      border: none;
+      outline: none;
+
+      .burger-menu-stick {
+        display: block;
+        height: 2px;
+        width: 24px;
+        content: "";
+        background-color: #fff;
+        margin-top: 5px;
+        transition: 0.2s linear;
+      }
+
+    }
+
+    .navbar-nav {
+      .nav-item {
+        @include breakpoint(breakMin992) {
+          margin: 0 8px;
+        }
+
+        .nav-link {
+          //@include breakpoint(breakMin992) {
+          color: #fff;
+          font-size: 20px;
+          //}
+        }
+      }
+    }
+  }
+}
+
+
+//Hover in header
+
+header {
+  ul {
+    padding: 0;
+    list-style: none;
+    display: table;
+    text-align: center;
+
+    li {
+      display: table-cell;
+      position: relative;
+
+      a.underline-hover {
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        font-size: 18px;
+        display: inline-block;
+        padding: 15px 20px;
+        @include breakpoint(breakMax991) {
+          padding: 14px 20px 8px;
+        }
+        position: relative;
+
+        &::after {
+          background: none repeat scroll 0 0 transparent;
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          background: #fff;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          width: 0;
+        }
+
+        &:hover::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+}
