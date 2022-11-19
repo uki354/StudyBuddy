@@ -194,3 +194,52 @@
     }
   }
 }
+
+
+.wanna-be-study-buddy-section {
+  .buttons {
+    padding: 46px 20px;
+    border-radius: 40px;
+    box-shadow: 4px 4px 16px 0px rgba(176, 176, 176, 1);
+    max-width: 474px;
+    width: 100%;
+    margin: 0 auto;
+
+    .yes-btn, .no-btn {
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 18px;
+      border: 2px solid #21cc95;
+      color: #21cc95;
+      font-weight: 600;
+
+
+      &:hover {
+        border: 2px solid transparent;
+        color: #fff;
+        background: linear-gradient(270deg, #21cc95, #0e8c74);
+        background-size: 400% 400%;
+
+        -webkit-animation: AnimationName 3s ease infinite;
+        -moz-animation: AnimationName 3s ease infinite;
+        -o-animation: AnimationName 3s ease infinite;
+        animation: AnimationName 3s ease infinite;
+      }
+    }
+  }
+
+  .about-being {
+
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+
+    .yes-about {
+
+    }
+
+    .not-about {
+
+    }
+  }
+}
