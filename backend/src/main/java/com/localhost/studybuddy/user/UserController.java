@@ -1,11 +1,14 @@
 package com.localhost.studybuddy.user;
 
 
+import com.localhost.studybuddy.util.GeoLocation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final  UserService userService;
+    private final UserGeoLocationService userGeoLocationService;
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -21,23 +25,28 @@ public class UserController {
     }
 
     @GetMapping("/search")
-    public Page<UserModel> searchUsersByFilters(@RequestParam(defaultValue = "0",required = false) String ageGroup,
+    public List<UserModel> searchUsersByFilters(@RequestParam(defaultValue = "0",required = false) String ageGroup,
                                                 @RequestParam(required = false) boolean gender,
                                                 @RequestParam(required = false) String university,
-                                                @RequestParam(defaultValue = "2000",required = false) String distance){
+                                                @RequestParam(defaultValue = "2",required = false) int distance,
+                                                @RequestParam(required = false) String lat,
+                                                @RequestParam(required = false) String lng){
 
-        UserModel user = UserModel.builder()
-                .gender(gender)
-                .university(university)
-                .build();
-        System.out.println(user);
+
        return userService.
-               findAllByConditions(UserModel.builder()
+               findAllUsersWithFiltersApplied(UserModel.builder()
                        .gender(gender)
                        .university(university)
                        .build(),
                        PageRequest.of(0,10),
-                       Integer.parseInt(ageGroup));
+                       Integer.parseInt(ageGroup),
+                       new GeoLocation(lat,lng),
+                       distance);
+    }
+
+    @GetMapping("/search/redis")
+    public void searc(){
+        userGeoLocationService.searchForUsers(new GeoLocation("43.89243009781097", "20.343840114901017"), 2);
     }
 
 

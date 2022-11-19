@@ -2,10 +2,13 @@ package com.localhost.studybuddy.user;
 
 import com.localhost.studybuddy.role.Role;
 import com.localhost.studybuddy.role.RoleService;
+import com.localhost.studybuddy.util.GeoLocation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.data.geo.GeoResult;
 import org.springframework.data.jpa.convert.QueryByExamplePredicateBuilder;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import javax.persistence.criteria.Predicate;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.localhost.studybuddy.role.RoleServiceImpl.DEFAULT_ROLE;
 
@@ -24,6 +28,7 @@ public class UserServiceImpl implements UserService{
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final RoleService roleService;
+    private final UserGeoLocationService userGeoLocationService;
 
 
 
@@ -84,15 +89,29 @@ public class UserServiceImpl implements UserService{
 
         if (ageGroup != 0) {
             Date[] dates = getDatesFromAgeGroup(ageGroup);
-            System.out.println(Arrays.toString(dates));
             return userRepository.findAll(getSpecFromDatesAndExample(dates[0],dates[1],example),pageable);
         }else{
             return findAllBasedOnCriteria(userModel,pageable);
         }
 
+    }
 
+    public List<UserModel> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation,int distance){
+        Page<UserModel> allByConditions = findAllByConditions(userModel, pageable, ageGroup);
+        List<GeoResult<RedisGeoCommands.GeoLocation<String>>> geoResults = userGeoLocationService.searchForUsers(geoLocation,distance);
 
+        List<Integer> ids = new ArrayList<>();
+        List<UserModel> users = new ArrayList<>();
 
+        geoResults.forEach(x-> ids.add(Integer.valueOf(x.getContent().getName())));
+        Collections.sort(ids);
+
+        for(UserModel user : allByConditions){
+            if (Collections.binarySearch(ids, user.getId()) != -1){
+                users.add(user);
+            };
+        }
+        return users;
     }
 
     private Date[] getDatesFromAgeGroup(int ageGroup){
