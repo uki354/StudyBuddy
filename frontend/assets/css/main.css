@@ -178,6 +178,20 @@ a {
   text-decoration: none;
 }
 
+.primary-button {
+  background-color: #21cc95;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  display: inline-block;
+}
+
+.primary-button.send {
+  background-color: #677572;
+  color: #fff;
+}
+
 .mb-mid {
   margin-bottom: 140px;
 }
@@ -315,6 +329,54 @@ header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-typ
   transform-origin: 0 0;
 }
 
+header ul {
+  padding: 0;
+  list-style: none;
+  display: table;
+  text-align: center;
+}
+header ul li {
+  display: table-cell;
+  position: relative;
+}
+header ul li a.underline-hover {
+  color: #00330B;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 18px;
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  header ul li a.underline-hover {
+    padding: 14px 20px 8px;
+  }
+}
+header ul li a.underline-hover::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #00330B;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+header ul li a.underline-hover:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+header.landing-header ul li a.underline-hover {
+  color: #fff !important;
+}
+header.landing-header ul li a.underline-hover::after {
+  color: #fff !important;
+}
 header.landing-header .navbar .navbar-toggler {
   overflow: hidden;
   box-shadow: none;
@@ -338,48 +400,6 @@ header.landing-header .navbar .navbar-toggler .burger-menu-stick {
 header.landing-header .navbar .navbar-nav .nav-item .nav-link {
   color: #fff;
   font-size: 20px;
-}
-
-header ul {
-  padding: 0;
-  list-style: none;
-  display: table;
-  text-align: center;
-}
-header ul li {
-  display: table-cell;
-  position: relative;
-}
-header ul li a.underline-hover {
-  color: #fff;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  font-size: 18px;
-  display: inline-block;
-  padding: 15px 20px;
-  position: relative;
-}
-@media (max-width: 991px) {
-  header ul li a.underline-hover {
-    padding: 14px 20px 8px;
-  }
-}
-header ul li a.underline-hover::after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #fff;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-header ul li a.underline-hover:hover::after {
-  width: 100%;
-  left: 0;
 }
 
 .landing-page-main-section {
@@ -482,9 +502,6 @@ header ul li a.underline-hover:hover::after {
   padding: 10px 22px;
   border-radius: 20px;
   border: none;
-}
-.filters .search .search-btn i {
-  transition: 0.25s linear;
 }
 
 .users-listing-section .users-list .user {

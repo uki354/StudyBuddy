@@ -75,226 +75,114 @@
     </div> <!--.container END-->
 </header>
 
+
 <main>
-    <section class="filters mt-mid text-center mb-4">
+    <section class="pofile-section mt-mid mb-mid">
         <div class="container">
-            <h2 class="text-center mb-4">Filters</h2>
-            <div class="filter-item">
-                <select name="age" id="age"
-                        class="text-center"
-                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
-                    <option value="any">Age</option>
-                    <option value="16-18">16-18</option>
-                    <option value="18-20">18-20</option>
-                    <option value="20-22">20-22</option>
-                    <option value="22-24">22-24</option>
-                    <option value="24-30">24-30</option>
-                    <option value="30+">30+</option>
-                </select>
-            </div> <!--  .filter-item END-->
+            <h2 class="mb-5 fw-bold">Lorem Ipsum</h2>
 
-
-            <div class="filter-item">
-                <select name="gender" id="gender"
-                        class="text-center"
-                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
-                    <option value="any">Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div> <!--  .filter-item END-->
-
-
-            <div class="filter-item">
-                <select name="distance" id="distance"
-                        class="text-center"
-                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
-                    <option value="any">Max Distance</option>
-                    <option value="<1km"><1km</option>
-                    <option value="1-3km">1-3km</option>
-                    <option value="1-3km">3-5km</option>
-                    <option value="1-3km">5-10km</option>
-                    <option value=">10km">>10km</option>
-                </select>
-
-
-                <div class="filter-item">
-                    <select name="university" id="university"
-                            class="text-center"
-                            style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
-                        <option value="any">University</option>
-                        <option value="BG">Beogradski univerzitet</option>
-                        <option value="Nis">univerzitet u Nisu</option>
-                        <option value="NS">univerzitet u Novom Sadu</option>
-                        <option value="KG">Univerzitet u Kg</option>
-                        <option value="Cacak">Univerzitet u Cacku</option>
-                        <option value="Singidunum">Singidunum</option>
-                    </select>
-                </div> <!--  .filter-item END-->
-            </div> <!--  .filter-item END-->
-
-
-            <div class="search mt-3">
-                <a class="search-btn" href="#"><i class="fa-solid fa-magnifying-glass pe-2"></i>Search</a>
-
-                <a class="search-btn" href="#"><i class="fa-solid fa-location-dot pe-2"></i>Near me</a>
-            </div>
-        </div>
-
-    </section> <!--  .filters END-->
-
-
-    <hr class="my-5" style="background: #0d855e;">
-
-
-    <!--    if has anything in list, return  .users-listing-section, if not, just send: sorry -->
-
-    <section class="users-listing-section mb-mid">
-        <div class="container">
-            <div class="users-list">
-
-                <div class="row align-items-center">
-
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <article class="user d-flex justify-content-around align-items-center">
-                            <div class="row align-items-center">
-                                <div class="col-4 user-img">
-                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
-                                    <a class="request-btn" href="#">
-                                        <span class="request">Request</span>
-                                        <span class="send d-none">Sent</span>
-                                    </a>
-                                </div> <!--.user-img END-->
-
-                                <div class="col-8 user-short-data">
-                                    <div class=" user-text">
-                                        <strong>Lorem Ipsum</strong>
-                                    </div>
-                                    <div class="d-flex align-items-center jsutify-content-start">
-                                        <div class="user-text">
-                                            <b>Age: </b>
-                                            <span>24</span>
-                                        </div>
-                                        <div class="user-text ps-3">
-                                            <b>Gender: </b>
-                                            <span>Male</span>
-                                        </div>
-                                    </div>
-
-                                    <div class=" user-text">
-                                        <b>Location:</b>
-                                        <span class="ps-1">"Belgrade"</span>
-                                    </div>
-
-                                    <div class="user-text">
-                                        <b>University:</b>
-                                        <span class="ps-1">"Singidunum"</span>
-                                    </div>
-                                </div>
+            <div class="row mt-3">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <div class="user-img">
+                                <img src="./assets/images/random-lik.jpg" alt="user's profile image"
+                                     class=" img-fluid mx-auto d-block"
+                                     style="width: 150px; border-radius: 20px;">
+                            </div>
+                            <h5 class="my-3">John Smith</h5>
+                            <p class="text-muted mb-1">Full Stack Developer</p>
+                            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                            <div class="search">
+                                <a class="request-btn search-btn primary-button" href="#">
+                                    <span class="request ">Request</span>
+                                    <span class="send d-none">Sent</span>
+                                </a>
                             </div>
 
-                        </article> <!--.user END-->
-                    </div> <!--.col END-->
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <article class="user d-flex justify-content-around align-items-center">
-                            <div class="row align-items-center">
-                                <div class="col-4 user-img">
-                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
-                                    <a class="request-btn" href="#">
-                                        <span class="request">Request</span>
-                                        <span class="send d-none">Sent</span>
-                                    </a>
-                                </div> <!--.user-img END-->
-
-                                <div class="col-8 user-short-data">
-                                    <div class=" user-text">
-                                        <strong>Lorem Ipsum</strong>
-                                    </div>
-                                    <div class="d-flex align-items-center jsutify-content-start">
-                                        <div class="user-text">
-                                            <b>Age: </b>
-                                            <span>24</span>
-                                        </div>
-                                        <div class="user-text ps-3">
-                                            <b>Gender: </b>
-                                            <span>Male</span>
-                                        </div>
-                                    </div>
-
-                                    <div class=" user-text">
-                                        <b>Location:</b>
-                                        <span class="ps-1">"Belgrade"</span>
-                                    </div>
-
-                                    <div class="user-text">
-                                        <b>University:</b>
-                                        <span class="ps-1">"Singidunum"</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article> <!--.user END-->
-                    </div> <!--.col END-->
-
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <article class="user d-flex justify-content-around align-items-center">
-                            <div class="row align-items-center">
-                                <div class="col-4 user-img">
-                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
-                                    <a class="request-btn" href="#">
-                                        <span class="request">Request</span>
-                                        <span class="send d-none">Sent</span>
-                                    </a>
-                                </div> <!--.user-img END-->
-
-                                <div class="col-8 user-short-data">
-                                    <div class=" user-text">
-                                        <strong>Lorem Ipsum</strong>
-                                    </div>
-                                    <div class="d-flex align-items-center jsutify-content-start">
-                                        <div class="user-text">
-                                            <b>Age: </b>
-                                            <span>24</span>
-                                        </div>
-                                        <div class="user-text ps-3">
-                                            <b>Gender: </b>
-                                            <span>Male</span>
-                                        </div>
-                                    </div>
-
-                                    <div class=" user-text">
-                                        <b>Location:</b>
-                                        <span class="ps-1">"Belgrade"</span>
-                                    </div>
-
-                                    <div class="user-text">
-                                        <b>University:</b>
-                                        <span class="ps-1">"Singidunum"</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </article> <!--.user END-->
-                    </div> <!--.col END-->
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-4">
-
+                        </div>
+                    </div>
+                    <div class="card mb-4 mb-lg-0">
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <p class="mb-0">https://mdbootstrap.com</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <p class="mb-0">@mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-            </div> <!--  .users-listing END-->
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">Johnatan Smith</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">example@example.com</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Phone</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">(097) 234-5678</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Mobile</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">(098) 765-4321</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div> <!--  .container END-->
-    </section> <!--  .users-listing-section END-->
-
-    <section class="no-study-buddy my-5">
-        <h2 class="text-center">Sorry, no found... </h2>
-    </section>
-
+    </section>  <!--  .map-with-caffes END-->
 </main>
 
 
