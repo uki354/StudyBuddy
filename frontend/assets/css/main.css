@@ -473,6 +473,9 @@ header ul li a.underline-hover:hover::after {
   border-radius: 20px !important;
   padding: 4px 8px !important;
 }
+.filters .filter-item .select:hover {
+  cursor: pointer;
+}
 .filters .search .search-btn {
   background-color: #21cc95;
   color: #fff;
