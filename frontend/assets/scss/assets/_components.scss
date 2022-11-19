@@ -109,6 +109,10 @@
       border: transparent !important;
       border-radius: 20px !important;
       padding: 4px 8px !important;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
   }
