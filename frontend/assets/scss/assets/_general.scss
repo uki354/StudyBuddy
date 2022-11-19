@@ -5,7 +5,7 @@ $secondary-color: #21cc95;
 $footer-color: #0d855e;
 
 $primary-txt-color: #00330B;
-
+$gray-color: #677572;
 
 //FONTS
 
@@ -66,6 +66,9 @@ body {
   }
 }
 
+img {
+  width: 100%;
+}
 
 p {
   margin-bottom: 0;
@@ -80,6 +83,13 @@ a {
   margin-bottom: 140px;
   @include breakpoint(breakMax991) {
     margin-bottom: 85px;
+  }
+}
+
+.mt-mid {
+  margin-top: 100px;
+  @include breakpoint(breakMax991) {
+    margin-bottom: 55px;
   }
 }
 

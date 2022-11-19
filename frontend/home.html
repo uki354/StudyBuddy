@@ -31,7 +31,7 @@
 <body>
 
 
-<header class="bg-transparent landing-header">
+<header class="bg-transparent">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
@@ -57,10 +57,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-0 pt-4">
                         <li class="nav-item mx-4">
-                            <a class="nav-link active underline-hover px-0" href="./login.html">Login</a>
+                            <a class="nav-link active underline-hover px-0" href="#">Home</a>
                         </li>
                         <li class="nav-item mx-4">
-                            <a class="nav-link underline-hover px-0" href="./register.html">Register</a>
+                            <a class="nav-link underline-hover px-0" href="#">Info</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link underline-hover px-0" href="#">Partners</a>
+                        </li>
+                        <li class="nav-item mx-4">
+                            <a class="nav-link underline-hover px-0" href="#">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -69,120 +75,224 @@
     </div> <!--.container END-->
 </header>
 
-
 <main>
-
-    <!--.landing-page-main-section START-->
-    <section class="landing-page-main-section bg-change-gradiants">
+    <section class="filters mt-mid text-center mb-4">
         <div class="container">
-            <div class="landing-page-main-section-content">
-                <h2 class="sub-main-title text-center text-white">Welcome to</h2>
-                <br>
-                <h1 class="main-title text-center text-white mb-5">StudyBuddy</h1>
+            <h2 class="text-center mb-4">Filters</h2>
+            <div class="filter-item">
+                <select name="age" id="age"
+                        class="text-center"
+                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
+                    <option value="any">Age</option>
+                    <option value="16-18">16-18</option>
+                    <option value="18-20">18-20</option>
+                    <option value="20-22">20-22</option>
+                    <option value="22-24">22-24</option>
+                    <option value="24-30">24-30</option>
+                    <option value="30+">30+</option>
+                </select>
+            </div> <!--  .filter-item END-->
 
 
-                <a id="steps" class="scroll-to-next-section up-down-animation d-block text-center list-group"
-                   href="#steps">
-                    <i class="fa-solid fa-angles-down"></i>
-                </a>
+            <div class="filter-item">
+                <select name="gender" id="gender"
+                        class="text-center"
+                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
+                    <option value="any">Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div> <!--  .filter-item END-->
 
-            </div> <!-- .landing-page-main-section-content END-->
+
+            <div class="filter-item">
+                <select name="distance" id="distance"
+                        class="text-center"
+                        style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
+                    <option value="any">Max Distance</option>
+                    <option value="<1km"><1km</option>
+                    <option value="1-3km">1-3km</option>
+                    <option value="1-3km">3-5km</option>
+                    <option value="1-3km">5-10km</option>
+                    <option value=">10km">>10km</option>
+                </select>
 
 
-        </div> <!--.container END-->
-    </section> <!--.landing-page-main-section END-->
+                <div class="filter-item">
+                    <select name="university" id="university"
+                            class="text-center"
+                            style="border: none;border-radius: 20px;background: #38C441; color: #fff; padding: 8px 12px; margin: 0 10px 10px 0;">
+                        <option value="any">University</option>
+                        <option value="BG">Beogradski univerzitet</option>
+                        <option value="Nis">univerzitet u Nisu</option>
+                        <option value="NS">univerzitet u Novom Sadu</option>
+                        <option value="KG">Univerzitet u Kg</option>
+                        <option value="Cacak">Univerzitet u Cacku</option>
+                        <option value="Singidunum">Singidunum</option>
+                    </select>
+                </div> <!--  .filter-item END-->
+            </div> <!--  .filter-item END-->
 
 
-    <section class="basic-benefits mb-mid" data-bs-spy="scroll" data-bs-target="#steps" data-bs-offset="0"
-             class="scrollspy-example" tabindex="0">
+            <div class="search mt-3">
+                <a class="search-btn" href="#"><i class="fa-solid fa-magnifying-glass pe-2"></i>Search</a>
+
+                <a class="search-btn" href="#"><i class="fa-solid fa-location-dot pe-2"></i>Near me</a>
+            </div>
+
+    </section> <!--  .filters END-->
+
+
+    <hr class="my-5" style="background: #0d855e;">
+
+
+    <!--    if has anything in list, return  .users-listing-section, if not, just send: sorry -->
+
+
+    <section class="users-listing-section mb-mid">
         <div class="container">
-            <div class="benefits d-flex justify-content-around align-items-center flex-column flex-lg-row">
-                <div class="benefit-item mx-4 text-center position-relative mb-5 mb-lg-0">
-                    <div class="benefit-icon text-center mb-2">
-                        <i class="fa-solid fa-book"></i>
-                    </div> <!-- .benefit-icon END-->
-                    <strong class="benefit-title mb-2">Lorem ipsum</strong> <!-- .benefit-title END-->
-                    <p class="benefit-about ">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p> <!-- .benefit-about END-->
+            <div class="users-list">
 
-                    <div class="step position-absolute">
-                        <i class="fa-solid fa-1"></i>
+                <div class="row align-items-center">
+
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <article class="user d-flex justify-content-around align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-4 user-img">
+                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
+                                    <a class="request-btn" href="#">
+                                        <span class="request">Request</span>
+                                        <span class="send d-none">Sent</span>
+                                    </a>
+                                </div> <!--.user-img END-->
+
+                                <div class="col-8 user-short-data">
+                                    <div class=" user-text">
+                                        <strong>Lorem Ipsum</strong>
+                                    </div>
+                                    <div class="d-flex align-items-center jsutify-content-start">
+                                        <div class="user-text">
+                                            <b>Age: </b>
+                                            <span>24</span>
+                                        </div>
+                                        <div class="user-text ps-3">
+                                            <b>Gender: </b>
+                                            <span>Male</span>
+                                        </div>
+                                    </div>
+
+                                    <div class=" user-text">
+                                        <b>Location:</b>
+                                        <span class="ps-1">"Belgrade"</span>
+                                    </div>
+
+                                    <div class="user-text">
+                                        <b>University:</b>
+                                        <span class="ps-1">"Singidunum"</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article> <!--.user END-->
+                    </div> <!--.col END-->
+
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <article class="user d-flex justify-content-around align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-4 user-img">
+                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
+                                    <a class="request-btn" href="#">
+                                        <span class="request">Request</span>
+                                        <span class="send d-none">Sent</span>
+                                    </a>
+                                </div> <!--.user-img END-->
+
+                                <div class="col-8 user-short-data">
+                                    <div class=" user-text">
+                                        <strong>Lorem Ipsum</strong>
+                                    </div>
+                                    <div class="d-flex align-items-center jsutify-content-start">
+                                        <div class="user-text">
+                                            <b>Age: </b>
+                                            <span>24</span>
+                                        </div>
+                                        <div class="user-text ps-3">
+                                            <b>Gender: </b>
+                                            <span>Male</span>
+                                        </div>
+                                    </div>
+
+                                    <div class=" user-text">
+                                        <b>Location:</b>
+                                        <span class="ps-1">"Belgrade"</span>
+                                    </div>
+
+                                    <div class="user-text">
+                                        <b>University:</b>
+                                        <span class="ps-1">"Singidunum"</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article> <!--.user END-->
+                    </div> <!--.col END-->
+
+                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        <article class="user d-flex justify-content-around align-items-center">
+                            <div class="row align-items-center">
+                                <div class="col-4 user-img">
+                                    <img src="./assets/images/random-lik.jpg" alt="user's profile image">
+                                    <a class="request-btn" href="#">
+                                        <span class="request">Request</span>
+                                        <span class="send d-none">Sent</span>
+                                    </a>
+                                </div> <!--.user-img END-->
+
+                                <div class="col-8 user-short-data">
+                                    <div class=" user-text">
+                                        <strong>Lorem Ipsum</strong>
+                                    </div>
+                                    <div class="d-flex align-items-center jsutify-content-start">
+                                        <div class="user-text">
+                                            <b>Age: </b>
+                                            <span>24</span>
+                                        </div>
+                                        <div class="user-text ps-3">
+                                            <b>Gender: </b>
+                                            <span>Male</span>
+                                        </div>
+                                    </div>
+
+                                    <div class=" user-text">
+                                        <b>Location:</b>
+                                        <span class="ps-1">"Belgrade"</span>
+                                    </div>
+
+                                    <div class="user-text">
+                                        <b>University:</b>
+                                        <span class="ps-1">"Singidunum"</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </article> <!--.user END-->
+                    </div> <!--.col END-->
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+
                     </div>
-                </div> <!-- .benefit-item END-->
+                </div>
 
-                <div class="benefit-item mx-4 text-center position-relative mb-5 mb-lg-0">
-                    <div class="benefit-icon text-center mb-2">
-                        <i class="fa-solid fa-book"></i>
-                    </div> <!-- .benefit-icon END-->
-                    <strong class="benefit-title mb-2">Lorem ipsum</strong> <!-- .benefit-title END-->
-                    <p class="benefit-about ">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p> <!-- .benefit-about END-->
+            </div> <!--  .users-listing END-->
+        </div> <!--  .container END-->
+    </section> <!--  .users-listing-section END-->
 
-                    <div class="step position-absolute">
-                        <i class="fa-solid fa-2"></i>
-                    </div>
-                </div> <!-- .benefit-item END-->
-
-                <div class="benefit-item mx-4 text-center position-relative mb-5 mb-lg-0">
-                    <div class="benefit-icon text-center mb-2">
-                        <i class="fa-solid fa-book"></i>
-                    </div> <!-- .benefit-icon END-->
-                    <strong class="benefit-title mb-2">Lorem ipsum</strong> <!-- .benefit-title END-->
-                    <p class="benefit-about ">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p> <!-- .benefit-about END-->
-
-                    <div class="step position-absolute">
-                        <i class="fa-solid fa-3"></i>
-                    </div>
-                </div> <!-- .benefit-item END-->
-            </div> <!-- .benefits END-->
-        </div> <!--.container END-->
-    </section> <!-- .basic-benefits END-->
-
-    <section class="about mb-mid">
-        <div class="container">
-            <h2 class="text-center fw-bold title-margin">
-                About app
-            </h2>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 mx-auto">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex
-                        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore
-                        eu fugiat
-                        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt
-                        mollit
-                        anim id est laborum.
-                        <br><br>
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex
-                        ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore
-                        eu fugiat
-                        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt
-                        mollit
-                        anim id est laborum.
-                    </p>
-                </div> <!-- .col END-->
-                <div class="col-12 col-lg-6 img-col mt-5 mt-lg-none">
-                    <img class="w-100 d-none d-lg-block" src="./assets/images/image-02.jpg" alt="study with a friend">
-                    <img class="w-75 mx-auto d-block d-lg-none" src="./assets/images/image-01.jpg"
-                         alt="study with a friend">
-                </div><!-- .img-col END-->
-            </div> <!-- .row END-->
-        </div>
-    </section> <!-- .about END-->
 </main>
+
 
 <footer>
     <div class="container">
