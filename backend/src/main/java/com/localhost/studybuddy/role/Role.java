@@ -1,9 +1,6 @@
 package com.localhost.studybuddy.role;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 
@@ -16,6 +13,7 @@ import java.util.Objects;
 @Table(name = "role")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Role {
 
     @Id

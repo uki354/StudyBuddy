@@ -4,6 +4,7 @@ import com.localhost.studybuddy.util.BaseModel;
 import com.localhost.studybuddy.util.GeoLocation;
 import com.localhost.studybuddy.util.GeoLocationConverter;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
+@Builder
 public class Coffeshop extends BaseModel {
 
     @Id

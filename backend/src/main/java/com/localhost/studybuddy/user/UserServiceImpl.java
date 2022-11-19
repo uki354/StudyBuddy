@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public void createUser(UserDto userDto) {
+    public UserModel createUser(UserDto userDto) {
         if(checkIfUserAlreadyExist(userDto.getEmail()))
             throw new RuntimeException("User with email  " + userDto.getEmail() + " already exists");
 
@@ -59,11 +60,16 @@ public class UserServiceImpl implements UserService{
                 .name(userDto.getName())
                 .lastname(userDto.getLastname())
                 .imagePath(UPLOAD_DIR + "default_img.png")
+                .gender(userDto.getGender())
+                .birthdate(userDto.getBirthdate())
+                .university(userDto.getUniversity())
                 .build();
 
         addDefaultRole(user);
-        userRepository.save(user);
+        return userRepository.save(user);
     }
+
+
 
 
     public Page<UserModel> findAllBasedOnCriteria(UserModel userModel, Pageable pageable){
@@ -128,12 +134,15 @@ public class UserServiceImpl implements UserService{
     public List<UserFilteredResponse> findAllUsersWithFiltersApplied(UserModel userModel, Pageable pageable, int ageGroup, GeoLocation geoLocation,int distance){
         Page<UserModel> allByConditions = findAllByConditions(userModel, pageable, ageGroup);
         List<GeoResult<RedisGeoCommands.GeoLocation<String>>> geoResults = userGeoLocationService.searchForUsers(geoLocation,distance);
+        System.out.println(geoResults);
 
         List<Integer> ids = new ArrayList<>();
         List<UserFilteredResponse> users = new ArrayList<>();
 
         geoResults.forEach(x-> ids.add(Integer.valueOf(x.getContent().getName())));
         Collections.sort(ids);
+        System.out.println(allByConditions.getContent().size() + "Size of db query");
+        System.out.println("ids size" + ids.size());
 
         for(UserModel user : allByConditions){
             int i = Collections.binarySearch(ids, user.getId());
@@ -145,6 +154,7 @@ public class UserServiceImpl implements UserService{
                 users.add(userFilteredResponse);
             };
         }
+        System.out.println(users.size() + "Size");
         return users;
     }
 
@@ -211,6 +221,7 @@ public class UserServiceImpl implements UserService{
                 .gender(userModel.getGender())
                 .id(userModel.getId())
                 .lastName(userModel.getLastname())
+                .birthdate(userModel.getBirthdate())
                 .university(userModel.getUniversity()).build();
     }
 
@@ -221,6 +232,51 @@ public class UserServiceImpl implements UserService{
                 .withIgnoreCase()
                 .withIgnoreNullValues();
     }
+
+
+
+    public void initUsers(){
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            UserModel user = createInitUser(UserDto.builder().name("Vladimir").gender(false).lastname("Petkovic").university("RAF").email("jstojic@gmail.com").password("123").birthdate(format.parse("01-01-2000")).gender(false).build());
+            UserModel user1 = createInitUser(UserDto.builder().name("Marina").gender(false).lastname("Solic").university("ETF").email("marinasolic@gmail.com").password("123").birthdate(format.parse("01-01-2002")).gender(true).build());
+            UserModel user2 = createInitUser(UserDto.builder().name("Milovan").gender(false).lastname("Glisic").university("MATF").email("milovanglisic@gmail.com").password("123").birthdate(format.parse("01-01-2003")).gender(false).build());
+            UserModel user3 = createInitUser(UserDto.builder().name("Vasko").gender(false).lastname("Popa").university("PMF").email("vaskopopa@gmail.com").password("123").birthdate(format.parse("01-01-1998")).gender(false).build());
+            UserModel user4 = createInitUser(UserDto.builder().name("Jovan").gender(false).lastname("Popovic").university("RAF").email("jovanpopic@gmail.com").password("123").birthdate(format.parse("01-01-1999")).gender(false).build());
+
+
+            userGeoLocationService.addStudyBuddy(new GeoLocation("43.8888068298014","20.337533526592104"), user.getId());
+            userGeoLocationService.addStudyBuddy(new GeoLocation("43.89016068660577","20.333778618014403"), user1.getId());
+            userGeoLocationService.addStudyBuddy(new GeoLocation("43.8888068298014","20.337533526592104"), user2.getId());
+            userGeoLocationService.addStudyBuddy(new GeoLocation("43.891188107823815","20.337890777957252"), user3.getId());
+            userGeoLocationService.addStudyBuddy(new GeoLocation("43.89170172637468","20.339782753919764"), user4.getId());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    private UserModel createInitUser(UserDto userDto){
+        if (checkIfUserAlreadyExist(userDto.getEmail())){
+            return userRepository.findUserModelByEmail(userDto.getEmail()).orElseThrow(()-> new RuntimeException("Not found"));
+        }
+        UserModel user = UserModel.builder()
+                .email(userDto.getEmail())
+                .password(passwordEncoder.encode(userDto.getPassword()))
+                .name(userDto.getName())
+                .lastname(userDto.getLastname())
+                .imagePath(UPLOAD_DIR + "default_img.png")
+                .gender(userDto.getGender())
+                .birthdate(userDto.getBirthdate())
+                .university(userDto.getUniversity())
+                .build();
+
+        addDefaultRole(user);
+        return userRepository.save(user);
+
+    }
+
 
 
 
