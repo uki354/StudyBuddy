@@ -11,7 +11,7 @@ import java.time.Instant;
 public class BaseModel {
 
     @Column(name = "is_deleted", columnDefinition = "TINYINT(1)")
-    private boolean isDeleted;
+    private Boolean isDeleted;
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private Instant createdAt;
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP")

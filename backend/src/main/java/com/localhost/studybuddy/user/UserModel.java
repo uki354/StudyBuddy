@@ -5,6 +5,7 @@ import com.localhost.studybuddy.util.BaseModel;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class UserModel extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int id;
+    private Integer id;
     @Column(name = "email", unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
@@ -35,6 +36,12 @@ public class UserModel extends BaseModel {
             joinColumns        = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    @Column(columnDefinition = "DATE")
+    private Date birthdate;
+    @Column(columnDefinition = "TINYINT(1)")
+    private boolean gender;
+    private String university;
+
 
 
 
