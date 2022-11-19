@@ -1,0 +1,458 @@
+/*BREAKPOINTS*/
+/*MIXINS*/
+/*fadeInFromNone*/
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+@-webkit-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+@keyframes fadeInFromNone {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+/*end fadeInFromNone*/
+/*fadeInFromRight*/
+@keyframes fadeInRight {
+  0% {
+    left: 20%;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+/*end fadeInFromRight*/
+/*fadeInFromLeft*/
+@keyframes fadeInLeft {
+  0% {
+    right: 20%;
+    opacity: 0;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+/*end fadeInFromLeft*/
+/*fadeInFromTop*/
+@keyframes fadeInTop {
+  0% {
+    top: -50%;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+/*end fadeInFromTop*/
+@-webkit-keyframes slide {
+  100% {
+    left: 200px;
+  }
+}
+@keyframes slide {
+  100% {
+    left: 200px;
+  }
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  overflow-y: scroll;
+}
+
+.main-title {
+  font-family: "Lexend Peta", sans-serif;
+  font-size: 96px;
+  line-height: 124px;
+}
+@media (max-width: 1201px) {
+  .main-title {
+    font-size: 70px;
+    line-height: 74px;
+  }
+}
+@media (max-width: 767px) {
+  .main-title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+}
+@media (max-width: 576px) {
+  .main-title {
+    font-size: 50px;
+    line-height: 56px;
+  }
+}
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 34px;
+    line-height: 40px;
+  }
+}
+
+.sub-main-title {
+  font-family: "Lexend Peta", sans-serif;
+  font-size: 36px;
+  line-height: 40px;
+}
+@media (max-width: 1201px) {
+  .sub-main-title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
+@media (max-width: 767px) {
+  .sub-main-title {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+@media (max-width: 576px) {
+  .sub-main-title {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mb-mid {
+  margin-bottom: 140px;
+}
+@media (max-width: 991px) {
+  .mb-mid {
+    margin-bottom: 85px;
+  }
+}
+
+.title-margin {
+  margin-bottom: 48px;
+}
+@media (max-width: 991px) {
+  .title-margin {
+    margin-bottom: 26px;
+  }
+}
+
+.gradient-color-background {
+  background: linear-gradient(270deg, #21cc95, #0e8c74);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 10s ease infinite;
+  -moz-animation: AnimationName 10s ease infinite;
+  -o-animation: AnimationName 10s ease infinite;
+  animation: AnimationName 10s ease infinite;
+}
+
+@keyframes mymove {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-24px);
+  }
+}
+.up-down-animation {
+  animation: mymove 1s infinite alternate;
+}
+
+.bg-change-gradiants {
+  background: linear-gradient(300deg, #3ec72d, #25ba7b, #009eff);
+  background-size: 600% 600%;
+  -webkit-animation: AnimationName 6s ease infinite;
+  -moz-animation: AnimationName 6s ease infinite;
+  -o-animation: AnimationName 6s ease infinite;
+  animation: AnimationName 6s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 51%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 51%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-o-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 51%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 51%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.standard-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  padding-top: 20px;
+}
+
+header.landing-header .navbar .navbar-toggler {
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+header.landing-header .navbar .navbar-toggler .burger-menu-stick {
+  display: block;
+  height: 2px;
+  width: 24px;
+  content: "";
+  background-color: #fff;
+  margin-top: 5px;
+  transition: 0.2s linear;
+}
+header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(2) {
+  transform: translateX(-60px);
+}
+header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(1) {
+  transform: rotate(45deg) translate(2px, 1px);
+  transform-origin: 0 0;
+}
+header.landing-header .navbar .navbar-toggler[aria-expanded=true] .burger-menu-stick:nth-of-type(3) {
+  transform: rotate(-45deg) translate(-4px, 3px);
+  transform-origin: 0 0;
+}
+@media (min-width: 992px) {
+  header.landing-header .navbar .navbar-nav .nav-item {
+    margin: 0 8px;
+  }
+}
+header.landing-header .navbar .navbar-nav .nav-item .nav-link {
+  color: #fff;
+  font-size: 20px;
+}
+
+header ul {
+  padding: 0;
+  list-style: none;
+  display: table;
+  text-align: center;
+}
+header ul li {
+  display: table-cell;
+  position: relative;
+}
+header ul li a.underline-hover {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 18px;
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+@media (max-width: 991px) {
+  header ul li a.underline-hover {
+    padding: 14px 20px 8px;
+  }
+}
+header ul li a.underline-hover::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+header ul li a.underline-hover:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.landing-page-main-section {
+  margin-top: -220px;
+}
+.landing-page-main-section .landing-page-main-section-content {
+  padding-top: 400px;
+  padding-bottom: 300px;
+}
+@media (max-width: 1201px) {
+  .landing-page-main-section .landing-page-main-section-content {
+    padding-top: 350px;
+    padding-bottom: 200px;
+  }
+}
+@media (max-width: 767px) {
+  .landing-page-main-section .landing-page-main-section-content {
+    padding-top: 360px;
+    padding-bottom: 200px;
+  }
+}
+@media (max-width: 576px) {
+  .landing-page-main-section .landing-page-main-section-content {
+    padding-top: 340px;
+    padding-bottom: 200px;
+  }
+}
+.landing-page-main-section .landing-page-main-section-content .scroll-to-next-section i {
+  font-size: 40px;
+  color: #fff;
+}
+
+.basic-benefits {
+  margin-top: -50px;
+}
+.basic-benefits .benefits {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.basic-benefits .benefits .benefit-item {
+  background-color: #fff;
+  box-shadow: 4px 4px 16px 1px rgb(176, 176, 176);
+  padding: 30px;
+  border-radius: 24px;
+  transition: 0.25s linear;
+}
+@media (min-width: 992px) {
+  .basic-benefits .benefits .benefit-item:hover {
+    transform: translateY(-16px);
+  }
+}
+.basic-benefits .benefits .benefit-item .benefit-icon i {
+  display: block;
+  font-size: 60px;
+  color: #00330B;
+}
+.basic-benefits .benefits .benefit-item .benefit-title {
+  font-size: 20px;
+  display: block;
+  color: #00330B;
+}
+.basic-benefits .benefits .benefit-item .benefit-about {
+  font-size: 16px;
+  color: #00330B;
+}
+.basic-benefits .benefits .benefit-item .step {
+  top: 24px;
+  left: 40px;
+  font-size: 26px;
+}
+
+.about .img-col img {
+  border-radius: 40px;
+  box-shadow: 4px 4px 12px 1px rgb(201, 201, 201);
+}
+
+footer {
+  background-color: #0d855e;
+  padding: 60px 0 30px 0;
+}
+footer .footer-basic-links {
+  list-style: none;
+  padding: 0;
+}
+footer .footer-basic-links .footer-basic-link {
+  padding-bottom: 8px;
+}
+footer .footer-basic-links .footer-basic-link a {
+  color: #fff;
+}
+footer .soc-medias .soc-link {
+  line-height: 50px;
+}
+footer .soc-medias .soc-link i {
+  font-size: 24px;
+  padding: 0 8px;
+  transition: 0.15s linear;
+}
+footer .soc-medias .soc-link:hover i {
+  font-size: 30px;
+}
+
+/*# sourceMappingURL=main.css.map */
