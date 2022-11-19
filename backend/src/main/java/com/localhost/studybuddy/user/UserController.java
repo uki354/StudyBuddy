@@ -56,14 +56,14 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/add")
     public void addUserToBeStudyBuddy(@RequestParam String lat,
                                       @RequestParam String lng,
                                       @RequestParam Integer id){
         userGeoLocationService.addStudyBuddy(new GeoLocation(lat,lng), id);
     }
 
-    @GetMapping
+    @GetMapping("/remove")
     public void removeUserFromStudyBuddy(@RequestParam Integer id){
         userGeoLocationService.removeStudyBuddy(id);
     }
