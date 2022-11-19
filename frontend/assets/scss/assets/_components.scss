@@ -44,6 +44,8 @@
       padding: 30px;
       border-radius: 24px;
       transition: 0.25s linear;
+      min-height: 220px;
+      width: 100%;
 
       &:hover {
         @include breakpoint(breakMin992) {
@@ -56,6 +58,12 @@
           display: block;
           font-size: 60px;
           color: $primary-txt-color;
+        }
+
+        &:hover {
+          i {
+            color: $primary-color;
+          }
         }
 
       }

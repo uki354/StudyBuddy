@@ -94,17 +94,20 @@ header {
 
 //just landing page header
 header.landing-header {
-  ul {
-    li {
-      a.underline-hover {
-        color: #fff !important;
-
-        &::after {
+  .navbar {
+    ul {
+      li {
+        a.underline-hover {
           color: #fff !important;
+
+          &::after {
+            background-color: #fff !important;
+          }
         }
       }
     }
   }
+
 
   .navbar {
     .navbar-toggler {
