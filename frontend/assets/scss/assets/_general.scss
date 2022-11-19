@@ -78,6 +78,20 @@ a {
   text-decoration: none;
 }
 
+.primary-button {
+  background-color: #21cc95;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  display: inline-block;
+}
+
+.primary-button.send{
+  background-color: $gray-color;
+  color: #fff;
+}
+
 //spacing classes
 .mb-mid {
   margin-bottom: 140px;

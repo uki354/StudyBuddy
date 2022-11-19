@@ -22,6 +22,8 @@ header {
 
     }
 
+    //animaiton for burger menu
+
     .navbar-toggler[aria-expanded='true'] .burger-menu-stick:nth-of-type(2) {
       transform: translateX(-60px);
     }
@@ -40,7 +42,70 @@ header {
 
 }
 
+
+//Hover in header
+
+header {
+  ul {
+    padding: 0;
+    list-style: none;
+    display: table;
+    text-align: center;
+
+    li {
+      display: table-cell;
+      position: relative;
+
+      a.underline-hover {
+        color: $primary-txt-color;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 0.15em;
+        font-size: 18px;
+        display: inline-block;
+        padding: 15px 20px;
+        @include breakpoint(breakMax991) {
+          padding: 14px 20px 8px;
+        }
+        position: relative;
+
+        &::after {
+          background: none repeat scroll 0 0 transparent;
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          background: $primary-txt-color;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          width: 0;
+        }
+
+        &:hover::after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+  }
+}
+
+
+//just landing page header
 header.landing-header {
+  ul {
+    li {
+      a.underline-hover {
+        color: #fff !important;
+
+        &::after {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
   .navbar {
     .navbar-toggler {
       overflow: hidden;
@@ -77,51 +142,3 @@ header.landing-header {
   }
 }
 
-
-//Hover in header
-
-header {
-  ul {
-    padding: 0;
-    list-style: none;
-    display: table;
-    text-align: center;
-
-    li {
-      display: table-cell;
-      position: relative;
-
-      a.underline-hover {
-        color: #fff;
-        text-transform: uppercase;
-        text-decoration: none;
-        letter-spacing: 0.15em;
-        font-size: 18px;
-        display: inline-block;
-        padding: 15px 20px;
-        @include breakpoint(breakMax991) {
-          padding: 14px 20px 8px;
-        }
-        position: relative;
-
-        &::after {
-          background: none repeat scroll 0 0 transparent;
-          bottom: 0;
-          content: "";
-          display: block;
-          height: 2px;
-          left: 50%;
-          position: absolute;
-          background: #fff;
-          transition: width 0.3s ease 0s, left 0.3s ease 0s;
-          width: 0;
-        }
-
-        &:hover::after {
-          width: 100%;
-          left: 0;
-        }
-      }
-    }
-  }
-}
