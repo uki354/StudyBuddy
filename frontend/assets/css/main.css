@@ -185,6 +185,7 @@ a {
   border-radius: 20px;
   border: none;
   display: inline-block;
+  font-weight: 600;
 }
 
 .primary-button.send {
@@ -371,11 +372,11 @@ header ul li a.underline-hover:hover::after {
   left: 0;
 }
 
-header.landing-header ul li a.underline-hover {
+header.landing-header .navbar ul li a.underline-hover {
   color: #fff !important;
 }
-header.landing-header ul li a.underline-hover::after {
-  color: #fff !important;
+header.landing-header .navbar ul li a.underline-hover::after {
+  background-color: #fff !important;
 }
 header.landing-header .navbar .navbar-toggler {
   overflow: hidden;
@@ -446,6 +447,8 @@ header.landing-header .navbar .navbar-nav .nav-item .nav-link {
   padding: 30px;
   border-radius: 24px;
   transition: 0.25s linear;
+  min-height: 220px;
+  width: 100%;
 }
 @media (min-width: 992px) {
   .basic-benefits .benefits .benefit-item:hover {
@@ -456,6 +459,9 @@ header.landing-header .navbar .navbar-nav .nav-item .nav-link {
   display: block;
   font-size: 60px;
   color: #00330B;
+}
+.basic-benefits .benefits .benefit-item .benefit-icon:hover i {
+  color: #0e8c74;
 }
 .basic-benefits .benefits .benefit-item .benefit-title {
   font-size: 20px;

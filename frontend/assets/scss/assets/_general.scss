@@ -85,9 +85,10 @@ a {
   border-radius: 20px;
   border: none;
   display: inline-block;
+  font-weight: 600;
 }
 
-.primary-button.send{
+.primary-button.send {
   background-color: $gray-color;
   color: #fff;
 }
