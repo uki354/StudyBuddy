@@ -97,7 +97,7 @@ $(document).ready(function () {
         console.log(register);
 
         $.ajax({
-            url: 'https://app-studdy-buddy.herokuapp.com/api/user/create',
+            url: 'http://localhost:8080/api/user/create',
             type: 'post',
             contentType: 'application/json',
             headers: {
@@ -123,14 +123,16 @@ $(document).ready(function () {
             "email": email,
             "password": password
         }
+        console.log(login);
 
         $.ajax({
-            url: 'https://app-studdy-buddy.herokuapp.com/api/user/login',
+            url: 'http://localhost:8080/api/user/login',
             type: 'post',
             contentType: 'application/json',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             data: JSON.stringify(login),
             success: function (data) {
